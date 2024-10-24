@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import serializers #Trasnformar objetos python em JSON e vice versa
 from .models import Curso, Avaliacao
 
 class AvaliacaoSerializer(serializers.ModelSerializer):

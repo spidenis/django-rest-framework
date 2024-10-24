@@ -41,4 +41,4 @@ class Avaliacao(Base):
         ordering = ['curso', 'nome']
 
     def __str__(self):
-        return f'{self.nome} avaliou o curso {self.curso} com nota {self.avaliacao}'    
+        return f'{self.nome} avaliou o curso {self.curso} com nota {self.avaliacao}'

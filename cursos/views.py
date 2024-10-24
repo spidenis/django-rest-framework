@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
 from .models import Curso, Avaliacao
 from .serializers import CursoSerializer, AvaliacaoSerializer
 
@@ -9,16 +10,16 @@ class CursoAPIView(APIView):
     """
 
     def get(self, request):
-        #cursos = Curso.objects.raw('SELECT "cursos_curso"."id", "cursos_curso"."criacao", "cursos_curso"."atualizacao", "cursos_curso"."ativo", "cursos_curso"."titulo", "cursos_curso"."url" FROM "cursos_curso" WHERE "cursos_curso"."ativo" ORDER BY "cursos_curso"."id" ASC')
         cursos = Curso.objects.all()
-        serializer = CursoSerializer(cursos, many=True)
-
-        #print([m.name for m in Curso._meta.fields])
-
-        #data = serializer.data
-        #print(data)
+        serializer = CursoSerializer(cursos, many=True) # Busca muitos com o parametro many
         return Response(serializer.data)
     
+    def post(self, request):
+        serializer = CursoSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED) # O retorno pode ser {"id": serializer.data["id"], "curso": serializer.data['titulo']}
+
 class  AvaliacaoAPIView(APIView):
     """
         API de avaliações da Geek
@@ -27,3 +28,9 @@ class  AvaliacaoAPIView(APIView):
         avaliacoes = Avaliacao.objects.all()
         serializer = AvaliacaoSerializer(avaliacoes, many=True)
         return Response(serializer.data)
+
+    def post(self, request):
+        serializer = AvaliacaoSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
