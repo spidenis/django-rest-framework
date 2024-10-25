@@ -54,7 +54,7 @@ class CursoViewSet(viewsets.ModelViewSet):
         # serializer = AvaliacaoSerializer(curso.avaliacoes.all(), many=True)
         # return Response(serializer.data)
 
-        self.pagination_class.page_size = 1
+        self.pagination_class.page_size = 2
         avaliacoes = Avaliacao.objects.filter(curso_id=pk)
         page = self.paginate_queryset(avaliacoes)
 
