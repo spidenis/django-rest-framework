@@ -25,6 +25,7 @@ SECRET_KEY = 'django-insecure-31@n5vll1w!6ur1q6w6yg6lbcog9-vwbtn3s((edibusaon#qq
 
 """
 Token Denis: df472793418ed0412eaef5c18ed4c3c3bf43e2f2
+Token Jorge: 35bba4817ba8011cf9200e49e6e3bca9c1dccf4a
 """
 
 # SECURITY WARNING: don't run with debug turned on in production!
